@@ -4,7 +4,7 @@ import java.util.*;
 import resources.Par;
 /**
  * Algoritmo para obtener el Pareto(S), en un tiempo ordinario [O(n^2)]
- * --Han
+ * <p>--Han
  */
 
 public class Alg1 {
@@ -44,7 +44,6 @@ public class Alg1 {
                 if (input.equalsIgnoreCase("S")) continue;
 
                 try {
-                    //todo-- Agregar verificación de repetidos.
                     String[] tokens = input.split(",");
                     float x = Float.parseFloat(tokens[0].trim());
                     float y = Float.parseFloat(tokens[1].trim());
@@ -74,7 +73,8 @@ public class Alg1 {
      * Para esta función Pareto(S) se compara cada dato con los demas datos del arreglo, si el dato pertenece o no, se monitorea con la variable 'flag'.
      * Si al menos una de las variables de p2 (dato de comparación) son menor o igual que p1 (dato analizado), se considera la variable 'mequal'. Por otro lado si tambíen se encuentra un valor de p2 estrictamente mayor que p1
      * se considera la variable 'mstrict'. Cuando ambas variables son true, se entiende que p2 domina a p1, por lo que este se descarta.
-     * El orden de este algoritmo es O(n^2), denotado por los 2 ciclos 'for' anidados.
+     *
+     * <p>El orden de este algoritmo es O(n^2), denotado por los 2 ciclos 'for' anidados.
      * @param S
      */
     private ArrayList<Par> Pareto(ArrayList<Par> S){
