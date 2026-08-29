@@ -16,37 +16,58 @@ public class Alg1 {
      */
     private void buildS(){
         ArrayList<Par> S = new ArrayList<>();
-        String input = "";
-        System.out.printf("-%s\n", "Ingrese los pares ordenados del conjunto 'S' separados por ','");
 
-        do{
-            System.out.printf("\n-%s","Para finalizar escriba 'S'");
-            System.out.printf("\n-%s","Ingrese el Par: ");
-            input = sc.next();
-            if(input.equalsIgnoreCase("S")) continue;
+        System.out.print("¿Desea cargar los datos predeterminados? (S/N): ");
+        String option = sc.next().trim();
 
-            try{
-                //todo-- Agregar verificación de repetidos.
-                String [] tokens = input.split(",");
-                float x = Float.parseFloat(tokens[0].trim());
-                float y = Float.parseFloat(tokens[1].trim());
+        if (option.isEmpty() || option.equalsIgnoreCase("S") || option.equalsIgnoreCase("si")) {
+            S.add(new Par(0.3f, 7.8f)); // p1
+            S.add(new Par(0.8f, 4.2f)); // p2
+            S.add(new Par(2.0f, 2.2f)); // p3
+            S.add(new Par(4.0f, 0.8f)); // p4
+            S.add(new Par(2.5f, 6.0f)); // p5
+            S.add(new Par(4.0f, 4.5f)); // p6
+            S.add(new Par(5.5f, 3.2f)); // p7
+            S.add(new Par(7.0f, 2.0f)); // p8
+            S.add(new Par(1.5f, 7.0f)); // p9
+            S.add(new Par(6.0f, 5.0f)); // p10
+            System.out.println("-> Cargar datos de prueba completado.\n");
+        }else {
 
-                S.add(new Par(x,y));
-            }catch(NumberFormatException|ArrayIndexOutOfBoundsException e ){
-                System.out.println("Ingrese un valor valido!\n");
-            }
-        }while(!input.equalsIgnoreCase("S"));
+            String input = "";
+            System.out.printf("-%s\n", "Ingrese los pares ordenados del conjunto 'S' separados por ','");
+
+            do {
+                System.out.printf("\n-%s", "Para finalizar escriba 'S'");
+                System.out.printf("\n-%s", "Ingrese el Par: ");
+                input = sc.next();
+                if (input.equalsIgnoreCase("S")) continue;
+
+                try {
+                    //todo-- Agregar verificación de repetidos.
+                    String[] tokens = input.split(",");
+                    float x = Float.parseFloat(tokens[0].trim());
+                    float y = Float.parseFloat(tokens[1].trim());
+
+                    S.add(new Par(x, y));
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Ingrese un valor valido!\n");
+                }
+            } while (!input.equalsIgnoreCase("S"));
+        }
         ArrayList<Par> P = Pareto(S);
 
-        System.out.printf("\n-%s\n", "-- Este era el conjunto 'S'");
-        for(Par p : S) {
-            System.out.printf("\n%s", p.toString());
-        }
-        System.out.printf("\n%-s\n","--------------");
-        System.out.printf("\n-%s\n", "Este es el resultado de Pareto(S)");
-        for(Par p : P) {
-            System.out.printf("\n%s", p.toString());
-        }
+            System.out.printf("\n-%s\n", "-- Este era el conjunto 'S'");
+            for (Par p : S) {
+                System.out.printf("\n%s", p.toString());
+            }
+            System.out.printf("\n%s\n", "--------------");
+            System.out.printf("\n-%s\n", "Este es el resultado de Pareto(S)");
+            for (Par p : P) {
+                int numeroPunto = S.indexOf(p) + 1;
+                System.out.printf("\np%d = %s", numeroPunto ,p.toString());
+            }
+
     }
 
     /**
