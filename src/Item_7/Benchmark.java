@@ -35,7 +35,7 @@ public class Benchmark {
     public static void main(String[] args) throws Exception {
 
         // Los 3 algoritmos son O(n^2)
-        int[] tamañosPeorCasoYConcentrado = {1000, 5000, 10000, 50000, 100000, 1000000};
+        int[] tamañosPeorCasoYConcentrado = {1000, 5000, 10000, 50000, 100000};
         int[] tamañosRandom               = {1000, 10000, 100000, 1000000};
 
         // Métodos por reflection (una sola vez)

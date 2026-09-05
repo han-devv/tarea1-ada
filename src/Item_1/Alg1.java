@@ -77,6 +77,12 @@ public class Alg1 {
      * <p>El orden de este algoritmo es O(n^2), denotado por los 2 ciclos 'for' anidados.
      * @param S
      */
+    private boolean domina(Par pA, Par pB) {
+        boolean mequal = pA.getX() <= pB.getX() && pA.getY() <= pB.getY();
+        boolean mstrict = pA.getX() < pB.getX() || pA.getY() < pB.getY();
+        return mequal && mstrict;
+    }
+
     private ArrayList<Par> Pareto(ArrayList<Par> S){
         ArrayList<Par> P = new ArrayList<>();
         boolean flag;
@@ -86,14 +92,10 @@ public class Alg1 {
             for (int j = 0; j < S.size(); j++) {
                 if(i==j) continue;
                 Par p2 = S.get(j);
-
-                boolean mequal = false;
-                boolean mstrict = false;
-
-                if (p2.getX() <= p1.getX() && p2.getY() <= p1.getY()) mequal = true;
-                if(p2.getX() < p1.getX() || p2.getY() < p1.getY()) mstrict = true;
-
-                if (mequal && mstrict){ flag = false; break;}
+                if (domina(p1, p2)) {
+                    flag = false;
+                    break;
+                }
 
             }
             if(flag) P.add(S.get(i));
